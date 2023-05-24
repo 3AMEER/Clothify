@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DOM Manipulation Test</title>
+</head>
+<body>
+    <div id="container">
+        <h1 id="heading">DOM Manipulation Test</h1>
+        <button id="btn">Click me</button>
+        <ul id="list">
+            <li>Item 1</li>
+            <li>Item 2</li>
+            <li>Item 3</li>
+        </ul>
+    </div>
+    
+    
+
+
+    <script>
+
+        // Product class representing a generic product
+        class Product{
+            constructor(name, price) {
+                this.name = name;
+                this.price = price
+            }
+
+            getInfo() {
+                return `Product: ${this.name}, Price: $${this.price}`
+            }
+        }
+
+        // Electronics class inheriting from Product     
+        class Electronics extends Product{
+            constructor (name, price, brand) {
+
+                super (name, price);
+
+                this.brand = brand;
+            }
+
+            getInfo() {
+                return `${super.getInfo()}, Brand: ${this.brand}`
+            }
+        }
+
+        // ShoppingCart class representing a shopping cart
+        class ShoppingCart{
+            constructor() {
+                this.itemes = [];
+            }
+
+            addItemes(item) {
+                this.itemes.push(item)
+            }
+
+            getTotalPrise() {
+                let total = 0;
+
+                for(const item of this.itemes){
+                    total += item.price
+                }
+                return total;
+            }
+        }
+
+        // User
+        class User {
+            constructor(name, email) {
+                this.name = name;
+                this.email = email;
+            }
+
+            authenticate() {
+                return `User ${this.name} authenticate.`
+            }
+        }
+        
+
+        let product1 = new Product('Book', 15);
+        let electronics1 = new Electronics('Smartphone', 500, 'Apple');
+
+        let cart = new ShoppingCart();
+        cart.addItemes(product1);
+        cart.addItemes(electronics1);
+
+        console.log(cart.getTotalPrise());
+
+        const user1 = new User("John Doe", "john@example.com");
+        user1.authenticate();
+        console.log(product1.getInfo()); 
+        console.log(electronics1.getInfo());
+    </script>
+</body>
+</html>
